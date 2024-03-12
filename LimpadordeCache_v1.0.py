@@ -6,9 +6,8 @@ from time import sleep
 # * Se der erro no clicke, use uma resolução próxima de 1366 x 768
 # * !! Necessário instalar a biblioteca 'pyautogui' antes de usar o programa
 #   (Pra fazer isso, digite 'pip install pyautogui' no seu terminal e espere instalar)
-# * !!! Caso dê erro o código, jogue seu mouse para o canto superior esquerdo que o
-#   programa para instantâneamente.
-# * Tempo médio de duração do programa: 2 Minutos e 10 Segundos
+# * !!! Caso dê erro o código, jogue seu mouse para o canto superior esquerdo que o programa para instantâneamente.
+# * Tempo médio de duração do programa: 2 Minutos e 50 Segundos
 
 pg.PAUSE = 0.1 # Pausa entre os comandos do pyautogui(Aumentar se seu PC for mais lento!!)
 def limpapasta(pasta, ignarquiv, replimpeza):
@@ -60,10 +59,28 @@ def limpapasta(pasta, ignarquiv, replimpeza):
         sleep(1)
     # Limpeza concluído
 
-
+# Função limpapasta(Nome da pasta, Vezes que o programa vai apertar o botão de ignorar arquivos, Vezes que o programa vai repetir limpeza).
 
 limpapasta('temp', 1, 2) # Exclui cache da pasta temp
 limpapasta('%temp%', 2, 2) # Excluicache da pasta %temp%
 limpapasta('prefetch', 1, 1) # Exclui cache da pasta prefetch
+limpapasta('C:\Windows\SoftwareDistribution\Download', 1, 1) # Exclui cache da pasta 'C:\Windows\SoftwareDistribution\Download'
 
+# Limpa cache da Windows Store (WSReset.exe)
+pg.hotkey('win', 'r')
+pg.press('backspace')
+pg.write('WSReset.exe') # Executa o programa que limpa o cache automaticamente
+pg.press('enter')
+sleep(10)
+pg.hotkey('alt', 'f4')
 
+# Limpa o cache do DNS (ipconfig /flushdns)
+pg.hotkey('win', 'r')
+pg.press('backspace')
+pg.write('cmd') # Abre o prompt de comando
+pg.press('enter')
+sleep(1)
+pg.write('ipconfig /flushdns')
+pg.press('enter')
+sleep(2)
+pg.hotkey('alt', 'f4')
